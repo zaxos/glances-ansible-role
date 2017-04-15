@@ -1,0 +1,10 @@
+---
+# tasks file for glances-ansible-role
+
+- name: Install Glances
+  include: install.yml
+  when: glances_state == 'present'
+
+- name: Remove Glances
+  include: remove.yml
+  when: glances_state == 'absent'

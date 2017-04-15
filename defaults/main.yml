@@ -1,0 +1,15 @@
+---
+# defaults file for glances-ansible-role
+
+glances_version: 2.9.1
+
+glances_optional_libraries: "action,batinfo,browser,cpuinfo,chart,docker,export,folders,gpu,ip,raid,snmp,web,wifi"
+
+glances_state: present
+
+glances_packages_EL:
+ - {package: "python-pip"}
+ - {package: "python-devel"}
+ - {package: "gcc"}
+ - {package: "lm_sensors"}
+ - {package: "wireless-tools"}

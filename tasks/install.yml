@@ -1,0 +1,31 @@
+---
+# tasks file for glances-ansible-role
+
+- name: Install epel repository
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install prerequisites
+  yum:
+    name: "{{ item.package }}"
+    state: present
+  with_items: "{{ glances_packages_EL }}"
+
+- name: Update pip
+  pip:
+    name: pip
+    state: latest
+
+- name: Install setuptools
+  pip:
+    name: setuptools
+    state: latest
+
+- name: Install glances
+  pip:
+    name: glances
+    state: present
+    version: "{{ glances_version }}"
+    extra_args: "{% if glances_optional_libraries != '' %}setuptools glances[{{ glances_optional_libraries }}]{% else %}{% endif %}"
+  when: glances_state is not defined or glances_state == 'present'

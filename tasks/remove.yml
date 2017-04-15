@@ -1,0 +1,9 @@
+---
+# tasks file for glances-ansible-role
+
+- name: Remove glances
+  pip:
+    name: glances
+    state: absent
+    version: "{{ glances_version }}"
+  when: glances_state is defined and glances_state == 'absent'
