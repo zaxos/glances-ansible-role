@@ -28,4 +28,3 @@
     state: present
     version: "{{ glances_version }}"
     extra_args: "{% if glances_optional_libraries != '' %}setuptools glances[{{ glances_optional_libraries }}]{% else %}{% endif %}"
-  when: glances_state is not defined or glances_state == 'present'
